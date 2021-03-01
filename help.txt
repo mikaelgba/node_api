@@ -1,24 +1,55 @@
-yarn init -y --> add package.json 
-yarn add express --> add o microframework express
-yarn add typescript -d --> add o typescript
-yarn tsc --init  --> iniciar o ts no projeto
-yarn add @types/express -d --> add a biblioteca de tipagem para manipular o express
-yarn add ts-node-dev -d --> ele faz a conversão de ts para js
-yarn add typeorm reflect-metadata --> add typeorm ao projeto
-yarn add sqlite3 --> add o bando sqlite no projeto
-yarn add uuid --> só add ai, confia
+Importações: {
+    yarn init -y --> add package.json ,
+    yarn add express --> add o microframework express,
+    yarn tsc --init  --> iniciar o ts no projeto,
+    yarn add @types/express -d --> add a biblioteca de tipagem para manipular o express,
+    yarn add ts-node-dev -d --> ele faz a conversão de ts para js,
+    yarn add typeorm reflect-metadata --> add typeorm ao projeto,
+    yarn add sqlite3 --> add o bando sqlite no projeto,
+    yarn add uuid --> só add ai, confia,
+    yarn add jest @types/jest -d --> add pacote para testes,
+    yarn add ts-jest -d --> para poder usar o ts nos testes,
+    yarn add i --save-dev @types/jest -d --> para os tests tb 
+}
+
+package.json: {
+    "start": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts" --> para levantar o projeto,
+    "typeorm": "ts-node-dev node_modules/typeorm/cli.js" --> para poder fazer operações com orn,
+}
 
 Comandos {
+    yarn init -y --> add package.json ,
+    yarn add typescript -d --> add o typescript,
     yarn start --> inicia aplicação,
     yarn typeorm --> ativar migrations,
     yarn typeorm migration:create -n "Nome da migration" --> criar migration - nome da migration sem as aspas,
     yarn typeorm migration:run --> executa as migration,
-    yarn typeorm migration:revert --> retorna a versão anterior da migration
+    yarn typeorm migration:revert --> retorna a versão anterior da migration,
+    yarn jest --init --> para criar os arquivos para os testes, { y, y, node, n, v8, y },
+}
+
+Anotações: {
+    toda vez que for fazer e adicionar uma nova migration no banco, é necessario deletar o database.sqlite e rodar o comando "yarn typeorm migration:run"; 
 }
 
 Dentro de tsconfig alterações {
     "strict": true --> "strict":false,
     // "experimentalDecorators": true --> "experimentalDecorators": true,
     // "emitDecoratorMetadata": true --> "emitDecoratorMetadata": true,
-    // "strictPropertyInitialization": true --> "strictPropertyInitialization": false
+    // "strictPropertyInitialization": true --> "strictPropertyInitialization": false,
+    // bail: 0, --> bail: true,
+    testMatch: {
+        {
+            // testMatch: [
+            //   "**/__tests__/**/*.[jt]s?(x)",
+            //   "**/?(*.)+(spec|test).[tj]s?(x)"
+            // ],
+        }
+        }, Para --> 
+        {
+            testMatch: [
+                "**/__tests__/*.test.ts"
+            ],
+        }
+    },
 }
